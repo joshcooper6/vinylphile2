@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+.logo {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.transease {
+    transition: 500ms ease;
+}
+
+.plus {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .rotate {
+    animation: rotate-fade 500ms linear forwards;
+  }
+  
+  .check {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
+  
+  .transition-all {
+    transition: all 0.3s ease-in-out;
+  }
+
+  @keyframes rotate-fade {
+    0% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg) scale(0);
+      opacity: .5;
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(360deg);
+    }
+  }
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
