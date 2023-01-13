@@ -7,7 +7,9 @@ module.exports = {
     './src/components/AddToListButton.jsx',
     './src/components/Header.jsx',
     './src/components/Footer.jsx',
-    './src/components/SVG.jsx'
+    './src/components/SVG.jsx',
+    './src/components/Inventory.jsx'
+
   ],
   theme: {
     extend: {},

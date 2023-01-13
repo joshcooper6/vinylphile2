@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from './assets/react.svg';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import data from './data';
 import './App.css';
 import AlbumCard from './components/AlbumCard';
@@ -7,17 +8,22 @@ import SideCart from './components/SideCart';
 import tryThisCart from './assets/cart.svg';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import Inventory from './components/Inventory';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
-  const [vinyls, setVinyls] = useState(data);
+  const [vinyls, setVinyls] = useState([]);
   const [cart, setCart] = useState([]);
-
+  
+  const { data2, status } = useQuery('vinyls', async () => {
+    const response = await fetch('http://localhost:2222/vinyls');
+    return response.json();
+  });
+  
   useEffect(() => {
     vinyls.map((vinyl, indx) => {
       return console.log(vinyl)
-    })
+    });
   }, []);
 
   useEffect(() => { if (cart.length > 0) { setShowCart(true) } }, [cart]);
@@ -38,16 +44,24 @@ function App() {
             children={'featured albums'}
           />
         </div>
-        <div className='flex w-full mb-6 max-w-[1200px] gap-6 self-center justify-center items-center flex-wrap'>
-          { vinyls.map((vinyl, indx) => {
-            return <AlbumCard 
-              vinyl={vinyl} 
-              setVinyls={setVinyls}
-              cart={cart}
-              setCart={setCart}
-            />
-          }) }
-        </div>
+
+          {/* <div className='flex w-full mb-6 max-w-[1200px] gap-6 self-center justify-center items-center flex-wrap'>
+            { vinyls.map((vinyl, indx) => {
+              return <AlbumCard 
+                vinyl={vinyl} 
+                setVinyls={setVinyls}
+                cart={cart}
+                setCart={setCart}
+              />
+            }) }
+          </div> */}
+
+          <Inventory
+            vinyls={vinyls}
+            setVinyls={setVinyls}
+            cart={cart}
+            setCart={setCart}
+          />
 
       </div>
 
