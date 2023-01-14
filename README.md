@@ -13,15 +13,11 @@ Vinylphile is a concept e-commerce platform that sells vinyl records direct-to-c
 
 - React.js / Vite.js
 - Tailwind CSS
+- AWS S3
 
 ## Backend
 
 - Node.js / Express.js
-- AWS S3
 - AWS EC2
 - AWS DynamoDB
 
-## Hosting
-
-- AWS Route 53
-- AWS S3
