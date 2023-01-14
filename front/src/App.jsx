@@ -57,8 +57,8 @@ function App() {
           </div> */}
 
           <Inventory
-            vinyls={vinyls}
-            setVinyls={setVinyls}
+            // vinyls={vinyls}
+            // setVinyls={setVinyls}
             cart={cart}
             setCart={setCart}
           />

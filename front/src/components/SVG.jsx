@@ -45,8 +45,8 @@ export default function SVG({setState, styles, svgShape}) {
                 onAnimationEnd={() => {setAnimating(false)}}
                 className={`${styles} ${animating ? 'rotate' : '' } self-center cursor-pointer`}
                 xmlns="http://www.w3.org/2000/svg" 
-                fill-rule="evenodd" 
-                clip-rule="evenodd">
+                fillRule="evenodd" 
+                clipRule="evenodd">
                 <path 
                 d={shape}
                 />

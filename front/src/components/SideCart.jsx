@@ -11,17 +11,17 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
     const [state, setState] = useState('');
 
     function handleSelectChange(e, item) {
-        if (e.target.value > item.inventory) {
-            alert(`Only ${item.inventory} of ${item.album} in stock.`)
+        if (e.target.value > item.inStock) {
+            alert(`Only ${item.inStock} of ${item.album} in stock.`)
         };
 
         setCart(prev => {
             return prev.map(vinyl => {
-                if ((vinyl.id === item.id) && (e.target.value <= vinyl.inventory)) {
+                if ((vinyl.id === item.id) && (e.target.value <= vinyl.inStock)) {
                     return {...vinyl, quantity: Number(e.target.value)}
                 };
 
-                if (item.quantity > item.inventory) {
+                if (item.quantity > item.inStock) {
                     return {...vinyl, quantity: Number(item.inventory)}
                 };
 
@@ -65,7 +65,7 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
                             onChange={(e) => handleSelectChange(e, item)}
                         />
 
-                        <div className={`flex bg-[url(${item.albumCover})] min-h-[50px] items-center justify-center w-2/4 flex-col`}>
+                        <div className={`flex min-h-[50px] items-center justify-center w-2/4 flex-col`}>
                             <h2
                                 className={`font-bold min-w-[50px] mb-1 text-center uppercase text-xs tracking-widest`}
                                 children={item.album}
@@ -87,7 +87,7 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
                         />
 
                         <img 
-                            src={item.albumCover} 
+                            src={item.coverImg} 
                             className={`w-1/4 border rounded-lg`}
                         />
                     </div>
