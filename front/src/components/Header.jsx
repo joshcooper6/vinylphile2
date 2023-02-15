@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SVG from './SVG';
 
 export default function Header({showCart, setShowCart}) {
-    return <div className="flex w-screen drop-shadow-md mb-6 justify-between bg-blue-900">
+    return <div className="flex z-[50] w-screen drop-shadow-md mb-6 justify-between bg-blue-900">
 
         <div className='logo flex p-5 items-center text-blue-200 select-none justify-center'>
             <FontAwesomeIcon icon={faRecordVinyl} className={'text-5xl p-2'} />

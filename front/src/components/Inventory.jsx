@@ -11,7 +11,7 @@ export default function Inventory({ vinyls, setVinyls, cart, setCart }) {
     if (status === 'error') { return <div>Error: {status.error}</div> }
 
     return <>
-        <div className='flex w-full mb-6 max-w-[1200px] gap-6 self-center justify-center items-center flex-wrap'>
+        <div className='flex w-full mb-6 max-w-[1500px] gap-6 self-center justify-center items-center flex-wrap'>
             { data.map((vinyl, indx) => {
               return <AlbumCard 
                 key={indx}

@@ -4,12 +4,26 @@ import calculateTotalCost from "../funcs/calcCost";
 import getSalesTaxRates from '../funcs/getSalesTaxRates'
 import calcItemQuantity from "../funcs/calcQuantity";
 import SVG from "./SVG";
+import axios from 'axios';
 
 export default function SideCart({cart, setShowCart, setCart, showCart}){
 
     const totalCartCost = calculateTotalCost(cart);
     const [state, setState] = useState('');
 
+    async function postCart () {
+        await axios.post('http://localhost:2222/checkout', {
+            cart
+        })
+        .then(response => {
+            window.location.href = response.data;
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+      }
+      
     function handleSelectChange(e, item) {
         if (e.target.value > item.inStock) {
             alert(`Only ${item.inStock} of ${item.album} in stock.`)
@@ -56,7 +70,7 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
                 </div>
                 
                 
-                {cart.map(item => <>
+                { cart.map(item => <>
                     <div className="flex gap-4 border-t-[1px] pt-4 items-center w-full justify-between">
                         <select
                             children={renderSelectOptions()}
@@ -91,7 +105,7 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
                             className={`w-1/4 border rounded-lg`}
                         />
                     </div>
-                </>)}
+                </>) }
 
                 <div className="flex flex-col border-t-[1px] pt-6 pb-6">
                     <h2 className="text-3xl font-bold text-right">${totalCartCost}</h2>
@@ -99,7 +113,7 @@ export default function SideCart({cart, setShowCart, setCart, showCart}){
                 </div>
 
                 <div className="flex w-1/2 flex-col self-center">
-                    <button className={`w-full p-2 border border-green-700 rounded-lg`} children={'Checkout'} />
+                    <button onClick={() => postCart()} className={`w-full p-2 border border-green-700 rounded-lg`} children={'Checkout'} />
                     <button className={`w-full border-red-700 mt-4 p-2 border rounded-lg`} onClick={() => {setCart([]); setState('');}}>Clear Cart</button>
                 </div>
             </div>
