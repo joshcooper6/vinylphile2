@@ -9,6 +9,42 @@ import tryThisCart from "./assets/cart.svg";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inventory from "./components/Inventory";
+import SVG from "./components/SVG";
+
+function SuccessStatus() {
+  const [success, setSuccess] = useState(false);
+  const [canceled, setCanceled] = useState(false);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("success")) {
+      setSuccess(true);
+    } else if (searchParams.get("canceled")) {
+      setCanceled(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (success || canceled) {
+      setTimeout(() => {
+        setSuccess(false);
+        setCanceled(false);
+      }, 5000);
+    }
+  }, [success, canceled]);
+
+  return (
+    <div className="flex items-center justify-center w-full text-center">
+      {success && (
+        <p className="text-3xl p-6">
+          Payment successful!
+          <br />
+          Check your email for confirmation.
+        </p>
+      )}
+      {canceled && <p className="text-3xl p-6">Payment canceled!</p>}
+    </div>
+  );
+}
 
 function formatPrice(price, currency) {
   // Convert the price to a string and add a decimal point two places from the end
@@ -39,11 +75,16 @@ function VinylInventory({ cart, setCart }) {
 
   const { data, isLoading, error } = useQuery("vinyls", fetchVinyls);
 
+  const [genres, setGenres] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
+  const [filterInput, setFilterInput] = useState([]);
+
   function allGenres() {
     let genres = [];
     data?.map((album, indx) => {
-      const filter = genres.filter(x => x == album.metadata.genre);
-      if ((album.metadata.genre != undefined) && (filter.length <= 0)) {
+      const filter = genres.filter((x) => x == album.metadata.genre);
+      const check = genres.includes(album.metadata.genre);
+      if (album.metadata.genre != undefined && filter.length <= 0 && !check) {
         genres.push(album.metadata.genre);
       }
     });
@@ -52,9 +93,9 @@ function VinylInventory({ cart, setCart }) {
 
   useEffect(() => {
     if (data) {
-      console.log('genres rendered', allGenres())
+      setGenres(allGenres());
     }
-   }, [data]);
+  }, [data]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -80,21 +121,90 @@ function VinylInventory({ cart, setCart }) {
     }
   }
 
+  function onFilterChange(e) {
+    if (e.target.checked && !filterInput.includes(e.target.name)) {
+      setFilterInput((prev) => [...prev, e.target.name]);
+    }
+
+    if (!e.target.checked && filterInput.includes(e.target.name)) {
+      const x = filterInput.filter((x) => x != e.target.name);
+      setFilterInput(x);
+    }
+  }
+
   return (
     <div className="flex w-11/12 max-w-[1000px] gap-4 self-center rounded-xl bg-gray-200 border p-10 items-center justify-center flex-wrap">
-      {data.map((vinyl) => (
-        <div
-          onClick={() => addToCart(vinyl)}
-          key={vinyl.id}
-          className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-full md:w-[200px]`}
-        >
-          <img className="rounded-md" src={vinyl.image} />
-          <h2 className="text-md truncate font-bold">{vinyl.name}</h2>
-          <span className="text-3xl font-light" title="PRICE">
-            {formatPrice(vinyl.convertedPrice, vinyl.currency)}
-          </span>
-        </div>
-      ))}
+      <button
+        onClick={() => setShowFilter((prev) => !prev)}
+        className="border-[1px] w-full flex items-center justify-center gap-3 border-gray-400 p-2 rounded-xl"
+      >
+        <SVG svgShape={"filter"} color={"gray"} styles={`scale-[1.3]`} />
+        Filter
+      </button>
+
+      <form
+        className={`flex ${
+          showFilter ? "max-h-[300px]" : "max-h-[0] opacity-0 z-[-100]"
+        } transease w-full flex-wrap justify-center gap-3`}
+      >
+        {genres?.map((genre, index) => {
+          return (
+            <div className="flex items-center gap-2">
+              <input
+                onChange={onFilterChange}
+                type="checkbox"
+                name={genre}
+                key={index}
+              />
+              <label for={genre}>{genre.toLowerCase()}</label>
+            </div>
+          );
+        })}
+      </form>
+
+      {filterInput?.length > 0 ? (
+        <>
+          {filterInput.map((genre, index) => {
+            return data.map((vinyl, ind) => {
+              if (vinyl.metadata.genre == genre) {
+                return (
+                  <>
+                    <div
+                      onClick={() => addToCart(vinyl)}
+                      key={vinyl.id}
+                      className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-full md:w-[200px]`}
+                    >
+                      <img className="rounded-md" src={vinyl.image} />
+                      <h2 className="text-md truncate font-bold">
+                        {vinyl.name}
+                      </h2>
+                      <span className="text-3xl font-light" title="PRICE">
+                        {formatPrice(vinyl.convertedPrice, vinyl.currency)}
+                      </span>
+                    </div>
+                  </>
+                );
+              }
+            });
+          })}
+        </>
+      ) : (
+        <>
+          {data?.map((vinyl) => (
+            <div
+              onClick={() => addToCart(vinyl)}
+              key={vinyl.id}
+              className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-full md:w-[200px]`}
+            >
+              <img className="rounded-md" src={vinyl.image} />
+              <h2 className="text-md truncate font-bold">{vinyl.name}</h2>
+              <span className="text-3xl font-light" title="PRICE">
+                {formatPrice(vinyl.convertedPrice, vinyl.currency)}
+              </span>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }
@@ -117,14 +227,9 @@ function App() {
       <Header showCart={showCart} setShowCart={setShowCart} />
 
       <div className="flex flex-col w-screen">
+        <SuccessStatus />
         <VinylInventory cart={cart} setCart={setCart} />
       </div>
-
-      {/* <div className="w-11/12 max-w-[1000px] bg-blue-100 drop-shadow-md rounded-lg mt-4 mb-3 h-[200px] flex flex-col justify-center items-center">
-        <h2 className="font-black text-4xl md:text-5xl logo transease">
-          Sign Up
-        </h2>
-      </div> */}
 
       <SideCart
         formatPrice={formatPrice}

@@ -92,6 +92,12 @@ app.get("/vinylsDB", (req, res) => {
 
 app.post("/checkout", async (req, res) => {
   const cart = req.body.cart;
+
+  if (req.body.cart.length <= 0) {
+    console.log('You aint got enough items in your cart to checkout, sis.');
+    return null;
+  }
+
   console.log(
     cart.map((item) => {
       return { price: item.priceId, quantity: item.quantity };
@@ -105,6 +111,7 @@ app.post("/checkout", async (req, res) => {
     mode: "payment",
     success_url: `${DOMAIN}?success=true`,
     cancel_url: `${DOMAIN}?canceled=true`,
+    // automatic_tax: {enabled: true},
   });
 
   res.send(session.url);
