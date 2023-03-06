@@ -86,7 +86,7 @@ function VinylInventory({ cart, setCart }) {
         <div
           onClick={() => addToCart(vinyl)}
           key={vinyl.id}
-          className={`flex p-4 gap-2 hover:scale-110 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-[200px]`}
+          className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-full md:w-[200px]`}
         >
           <img className="rounded-md" src={vinyl.image} />
           <h2 className="text-md truncate font-bold">{vinyl.name}</h2>
@@ -108,6 +108,8 @@ function App() {
     if (cart.length > 0) {
       setShowCart(true);
     }
+
+    console.log(cart);
   }, [cart]);
 
   return (
@@ -118,11 +120,11 @@ function App() {
         <VinylInventory cart={cart} setCart={setCart} />
       </div>
 
-      <div className="w-11/12 max-w-[1000px] bg-blue-100 drop-shadow-md rounded-lg mt-4 mb-3 h-[200px] flex flex-col justify-center items-center">
+      {/* <div className="w-11/12 max-w-[1000px] bg-blue-100 drop-shadow-md rounded-lg mt-4 mb-3 h-[200px] flex flex-col justify-center items-center">
         <h2 className="font-black text-4xl md:text-5xl logo transease">
           Sign Up
         </h2>
-      </div>
+      </div> */}
 
       <SideCart
         formatPrice={formatPrice}

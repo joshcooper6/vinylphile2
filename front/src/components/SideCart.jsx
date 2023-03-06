@@ -74,7 +74,7 @@ export default function SideCart({
   return (
     <>
       <div
-        className={`md:w-6/12 p-4 max-w-[400px] w-8/12 shadow-md fixed ${
+        className={`md:w-6/12 p-4 max-w-[400px] w-full shadow-md fixed ${
           showCart ? "translate-x-[0]" : "translate-x-[-1000px]"
         } transease left-[0] top-0 shadow-r-xl h-screen bg-white z-50`}
       >
@@ -97,19 +97,20 @@ export default function SideCart({
           <div className="flex flex-row-reverse w-full gap-2 self-center">
             <button
               onClick={() => postCart()}
-              className={`w-3/4 border border-green-700 rounded-lg`}
-              children={"Checkout"}
+              className={`w-3/4 border flex items-center font-light text-lg justify-center gap-1 border-blue-700 rounded-lg`}
+              children={<>Checkout <SVG svgShape={'stripe'} color={'blue'} styles={`scale-[1.2]`} /></>}
             />
             <button
-              className={`w-1/4 border-red-700 p-2 border rounded-lg`}
+              className={`w-1/4 flex items-center justify-center border-gray-300 p-2 border rounded-lg`}
               onClick={() => {
                 if (confirm("Are you sure you want to clear your cart?")) {
                   setCart([]);
+                  setShowCart(false);
                   setState("");
                 }
               }}
             >
-              Clear
+              <SVG svgShape={'clearCart'} color={'blue'} />
             </button>
           </div>
 
