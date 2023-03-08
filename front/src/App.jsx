@@ -1,51 +1,11 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import data from "./data";
+import { useQuery } from "react-query";
 import "./App.css";
-import AlbumCard from "./components/AlbumCard";
 import SideCart from "./components/SideCart";
-import tryThisCart from "./assets/cart.svg";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+import PaymentStatus from './components/PaymentStatus';
 import Inventory from "./components/Inventory";
-import PaymentStatus from './components/PaymentStatus'
 import SVG from "./components/SVG";
-
-// function SuccessStatus() {
-//   const [success, setSuccess] = useState(false);
-//   const [canceled, setCanceled] = useState(false);
-//   useEffect(() => {
-//     const searchParams = new URLSearchParams(window.location.search);
-//     if (searchParams.get("success")) {
-//       setSuccess(true);
-//     } else if (searchParams.get("canceled")) {
-//       setCanceled(true);
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     if (success || canceled) {
-//       setTimeout(() => {
-//         setSuccess(false);
-//         setCanceled(false);
-//       }, 5000);
-//     }
-//   }, [success, canceled]);
-
-//   return (
-//     <div className="flex items-center justify-center w-full text-center">
-//       {success && (
-//         <p className="text-3xl p-6">
-//           Payment successful!
-//           <br />
-//           Check your email for confirmation.
-//         </p>
-//       )}
-//       {canceled && <p className="text-3xl p-6">Payment canceled!</p>}
-//     </div>
-//   );
-// }
 
 function formatPrice(price, currency) {
   // Convert the price to a string and add a decimal point two places from the end
@@ -233,7 +193,7 @@ function App() {
 
       <div className="flex flex-col w-screen">
         <PaymentStatus />
-        <VinylInventory cart={cart} setCart={setCart} />
+        <Inventory cart={cart} setCart={setCart} />
       </div>
 
       <SideCart
