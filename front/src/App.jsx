@@ -9,42 +9,43 @@ import tryThisCart from "./assets/cart.svg";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inventory from "./components/Inventory";
+import PaymentStatus from './components/PaymentStatus'
 import SVG from "./components/SVG";
 
-function SuccessStatus() {
-  const [success, setSuccess] = useState(false);
-  const [canceled, setCanceled] = useState(false);
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.get("success")) {
-      setSuccess(true);
-    } else if (searchParams.get("canceled")) {
-      setCanceled(true);
-    }
-  }, []);
+// function SuccessStatus() {
+//   const [success, setSuccess] = useState(false);
+//   const [canceled, setCanceled] = useState(false);
+//   useEffect(() => {
+//     const searchParams = new URLSearchParams(window.location.search);
+//     if (searchParams.get("success")) {
+//       setSuccess(true);
+//     } else if (searchParams.get("canceled")) {
+//       setCanceled(true);
+//     }
+//   }, []);
 
-  useEffect(() => {
-    if (success || canceled) {
-      setTimeout(() => {
-        setSuccess(false);
-        setCanceled(false);
-      }, 5000);
-    }
-  }, [success, canceled]);
+//   useEffect(() => {
+//     if (success || canceled) {
+//       setTimeout(() => {
+//         setSuccess(false);
+//         setCanceled(false);
+//       }, 5000);
+//     }
+//   }, [success, canceled]);
 
-  return (
-    <div className="flex items-center justify-center w-full text-center">
-      {success && (
-        <p className="text-3xl p-6">
-          Payment successful!
-          <br />
-          Check your email for confirmation.
-        </p>
-      )}
-      {canceled && <p className="text-3xl p-6">Payment canceled!</p>}
-    </div>
-  );
-}
+//   return (
+//     <div className="flex items-center justify-center w-full text-center">
+//       {success && (
+//         <p className="text-3xl p-6">
+//           Payment successful!
+//           <br />
+//           Check your email for confirmation.
+//         </p>
+//       )}
+//       {canceled && <p className="text-3xl p-6">Payment canceled!</p>}
+//     </div>
+//   );
+// }
 
 function formatPrice(price, currency) {
   // Convert the price to a string and add a decimal point two places from the end
@@ -231,7 +232,7 @@ function App() {
       <Header showCart={showCart} setShowCart={setShowCart} />
 
       <div className="flex flex-col w-screen">
-        <SuccessStatus />
+        <PaymentStatus />
         <VinylInventory cart={cart} setCart={setCart} />
       </div>
 
