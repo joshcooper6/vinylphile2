@@ -96,7 +96,11 @@ export default function SideCart({
 
           <div className="flex flex-row-reverse w-full gap-2 self-center">
             <button
-              onClick={() => postCart()}
+              onClick={() => {
+                if (confirm('This is only a CONCEPT platform. Do NOT use your actual information as these are not actual products. Refer to Stripe API documentation to make a test payment.')) {
+                  postCart()
+                };
+              }}
               className={`w-3/4 border flex items-center font-light uppercase text-sm justify-center gap-1 border-blue-700 rounded-lg`}
               children={<>Checkout <SVG svgShape={'stripe'} color={'blue'} styles={`scale-[1] translate-y-[-1px]`} /></>}
             />
