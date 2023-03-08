@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import renderArray from "../funcs/renderArray";
 import calculateTotalCost from "../funcs/calcCost";
-import getSalesTaxRates from "../funcs/getSalesTaxRates";
 import calcItemQuantity from "../funcs/calcQuantity";
 import SVG from "./SVG";
 import axios from "axios";

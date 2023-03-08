@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import SVG from "./SVG";
+import allGenres from "../funcs/allGenres";
 import formatPrice from "../funcs/formatPrice";
 
 export default function Inventory({ cart, setCart }) {
@@ -13,18 +14,6 @@ export default function Inventory({ cart, setCart }) {
   const [genres, setGenres] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
-
-  function allGenres() {
-    let genres = [];
-    data?.map((album, indx) => {
-      const filter = genres.filter((x) => x == album.metadata.genre);
-      const check = genres.includes(album.metadata.genre);
-      if (album.metadata.genre != undefined && filter.length <= 0 && !check) {
-        genres.push(album.metadata.genre);
-      }
-    });
-    return genres;
-  }
 
   function addToCart(vinyl) {
     const existingVinyl = cart.find((item) => item.id === vinyl.id);
@@ -55,7 +44,7 @@ export default function Inventory({ cart, setCart }) {
 
   useEffect(() => {
     if (data) {
-      setGenres(allGenres());
+      setGenres(allGenres(data));
     }
   }, [data]);
 
@@ -75,7 +64,7 @@ export default function Inventory({ cart, setCart }) {
           onClick={() => setShowFilter((prev) => !prev)}
           className="border-[1.2px] flex items-center self-end justify-center gap-3 border-gray-400 p-2 rounded-full"
         >
-          <SVG svgShape={"filter"} color={"gray"} styles={`scale-[1.3]`} />
+          <SVG svgShape={"filter"} color={"gray"} styles={`scale-[1]`} />
         </button>
       </div>
 
@@ -87,14 +76,9 @@ export default function Inventory({ cart, setCart }) {
         >
           {genres?.map((genre, index) => {
             return (
-              <div className="flex items-center gap-2">
-                <input
-                  onChange={onFilterChange}
-                  type="checkbox"
-                  name={genre}
-                  key={index}
-                />
-                <label for={genre}>{genre.toLowerCase()}</label>
+              <div key={index} className="flex items-center gap-2">
+                <input onChange={onFilterChange} type="checkbox" name={genre} />
+                <label htmlFor={genre}>{genre.toLowerCase()}</label>
               </div>
             );
           })}
@@ -106,11 +90,10 @@ export default function Inventory({ cart, setCart }) {
               return data.map((vinyl, ind) => {
                 if (vinyl.metadata.genre == genre) {
                   return (
-                    <>
                       <div
                         onClick={() => addToCart(vinyl)}
-                        key={vinyl.id}
-                        className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-full md:w-[200px]`}
+                        key={ind}
+                        className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-9/12 md:w-[200px]`}
                       >
                         <img className="rounded-md" src={vinyl.image} />
                         <h2 className="text-md truncate font-bold">
@@ -120,7 +103,6 @@ export default function Inventory({ cart, setCart }) {
                           {formatPrice(vinyl.convertedPrice, vinyl.currency)}
                         </span>
                       </div>
-                    </>
                   );
                 }
               });
@@ -132,7 +114,7 @@ export default function Inventory({ cart, setCart }) {
               <div
                 onClick={() => addToCart(vinyl)}
                 key={vinyl.id}
-                className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-9/12 md:w-[200px]`}
+                className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-7/12 md:w-[200px]`}
               >
                 <img className="rounded-md" src={vinyl.image} />
                 <h2 className="text-md truncate font-bold">{vinyl.name}</h2>

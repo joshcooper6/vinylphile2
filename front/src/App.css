@@ -4,8 +4,19 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+body {
+  padding-bottom: 2em;
+}
+
 .transease {
     transition: 500ms ease;
+}
+
+#seattle {
+  clip-path: ellipse(130% 90% at 40% 5%);
+  background-image: url('https://windows10spotlight.com/wp-content/uploads/2022/02/0769c16b4226c9b38b845f4f715d5e80.jpg');
+  background-size: cover;
+  background-position: center top;
 }
 
 .plus {
