@@ -15,7 +15,7 @@ export default function Inventory() {
 
   const { data, isLoading, error } = useQuery("vinyls", fetchVinyls);
 
-  const [genres, setGenres] = useState([]);
+  const genres = allGenres(data);
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
 
@@ -30,11 +30,11 @@ export default function Inventory() {
     }
   }
 
-  useEffect(() => {
-    if (data) {
-      setGenres(allGenres(data));
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setGenres(allGenres(data));
+  //   }
+  // }, [data]);
 
   if (isLoading) {
     return <p>Loading...</p>;
