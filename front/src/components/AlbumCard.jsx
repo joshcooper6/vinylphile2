@@ -4,11 +4,11 @@ import formatPrice from "../funcs/formatPrice";
 
 export default function AlbumCard(props) {
   const { vinyl } = props;
-  const { addToCart } = useContext(AlbumContext);
+  const { addToCart, setActiveAlbum } = useContext(AlbumContext);
 
   return (
     <div
-      onClick={() => addToCart(vinyl)}
+      onClick={() => {addToCart(vinyl); setActiveAlbum(vinyl);}}
       className={`flex p-4 gap-4 hover:scale-105 cursor-pointer transease justify-start rounded-md bg-blue-900 text-blue-200 md:flex-col w-11/12 max-w-[400px] md:w-[200px]`}
     >
       <img className="rounded-md w-[100px] md:w-full" src={vinyl?.image} />
