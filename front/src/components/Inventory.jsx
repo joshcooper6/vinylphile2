@@ -4,6 +4,7 @@ import SVG from "./SVG";
 import allGenres from "../funcs/allGenres";
 import formatPrice from "../funcs/formatPrice";
 import { AlbumContext } from "../App";
+import AlbumCard from "./AlbumCard";
 
 export default function Inventory() {
   const { cart, setCart, showCart, setShowCart, addToCart } = useContext(AlbumContext);
@@ -99,19 +100,7 @@ export default function Inventory() {
               return data.map((vinyl, ind) => {
                 if (vinyl.metadata.genre == genre) {
                   return (
-                      <div
-                        onClick={() => addToCart(vinyl)}
-                        key={ind}
-                        className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-11/12 md:w-[200px]`}
-                      >
-                        <img className="rounded-md" src={vinyl.image} />
-                        <h2 className="text-md truncate font-bold">
-                          {vinyl.name}
-                        </h2>
-                        <span className="text-3xl font-light" title="PRICE">
-                          {formatPrice(vinyl.convertedPrice, vinyl.currency)}
-                        </span>
-                      </div>
+                    <AlbumCard vinyl={vinyl} key={index} />
                   );
                 }
               });
@@ -119,18 +108,8 @@ export default function Inventory() {
           </>
         ) : (
           <>
-            {data?.map((vinyl) => (
-              <div
-                onClick={() => addToCart(vinyl)}
-                key={vinyl.id}
-                className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-11/12 md:w-[200px]`}
-              >
-                <img className="rounded-md" src={vinyl.image} />
-                <h2 className="text-md truncate font-bold">{vinyl.name}</h2>
-                <span className="text-3xl font-light" title="PRICE">
-                  {formatPrice(vinyl.convertedPrice, vinyl.currency)}
-                </span>
-              </div>
+            {data?.map((vinyl, index) => (
+              <AlbumCard vinyl={vinyl} key={index} />
             ))}
           </>
         )}

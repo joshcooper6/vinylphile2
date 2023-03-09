@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AlbumContext } from "../App";
+import formatPrice from "../funcs/formatPrice";
 
 export default function AlbumCard(props) {
     const { vinyl } = props;
