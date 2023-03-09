@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import SVG from "./SVG";
 import allGenres from "../funcs/allGenres";
 import formatPrice from "../funcs/formatPrice";
+import { AlbumContext } from "../App";
 
-export default function Inventory({ cart, setCart }) {
+export default function Inventory() {
+  const { cart, setCart, addToCart } = useContext(AlbumContext);
+
   function fetchVinyls() {
     return fetch("http://localhost:2222/vinyls").then((res) => res.json());
   }
@@ -15,21 +18,21 @@ export default function Inventory({ cart, setCart }) {
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
 
-  function addToCart(vinyl) {
-    const existingVinyl = cart.find((item) => item.id === vinyl.id);
-    if (existingVinyl) {
-      setCart((prev) =>
-        prev.map((item) => {
-          if (item.id === vinyl.id) {
-            return { ...item, quantity: item.quantity + 1 };
-          }
-          return item;
-        })
-      );
-    } else {
-      setCart((prev) => [...prev, { ...vinyl, quantity: 1 }]);
-    }
-  }
+  // function addToCart(vinyl) {
+  //   const existingVinyl = cart.find((item) => item.id === vinyl.id);
+  //   if (existingVinyl) {
+  //     setCart((prev) =>
+  //       prev.map((item) => {
+  //         if (item.id === vinyl.id) {
+  //           return { ...item, quantity: item.quantity + 1 };
+  //         }
+  //         return item;
+  //       })
+  //     );
+  //   } else {
+  //     setCart((prev) => [...prev, { ...vinyl, quantity: 1 }]);
+  //   }
+  // }
 
   function onFilterChange(e) {
     if (e.target.checked && !filterInput.includes(e.target.name)) {
