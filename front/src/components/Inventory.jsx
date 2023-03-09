@@ -19,22 +19,6 @@ export default function Inventory() {
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
 
-  // function addToCart(vinyl) {
-  //   const existingVinyl = cart.find((item) => item.id === vinyl.id);
-  //   if (existingVinyl) {
-  //     setCart((prev) =>
-  //       prev.map((item) => {
-  //         if (item.id === vinyl.id) {
-  //           return { ...item, quantity: item.quantity + 1 };
-  //         }
-  //         return item;
-  //       })
-  //     );
-  //   } else {
-  //     setCart((prev) => [...prev, { ...vinyl, quantity: 1 }]);
-  //   }
-  // }
-
   function onFilterChange(e) {
     if (e.target.checked && !filterInput.includes(e.target.name)) {
       setFilterInput((prev) => [...prev, e.target.name]);

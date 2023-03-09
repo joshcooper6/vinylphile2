@@ -15,7 +15,7 @@ export const AlbumContext = createContext();
 
 function App() {
   const [showCart, setShowCart] = useState(false);
-  const [activeAlbum, setActiveAlbum] = useState([]);
+  const [activeAlbum, setActiveAlbum] = useState(false);
   const [cart, setCart] = useState([]);
 
   function addToCart(vinyl) {
@@ -70,13 +70,7 @@ function App() {
           <Inventory />
         </div>
 
-        <SideCart
-          formatPrice={formatPrice}
-          cart={cart}
-          setCart={setCart}
-          setShowCart={setShowCart}
-          showCart={showCart}
-        />
+        <SideCart />
       </AlbumContext.Provider>
     </div>
   );
