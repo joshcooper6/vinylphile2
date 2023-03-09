@@ -8,9 +8,8 @@ import Inventory from "./components/Inventory";
 import SVG from "./components/SVG";
 import formatPrice from "./funcs/formatPrice";
 import ActiveAlbumModal from "./components/ActiveAlbumModal";
-import disableScroll from './funcs/disableScroll';
-import enableScroll from './funcs/enableScroll';
-
+import disableScroll from "./funcs/disableScroll";
+import enableScroll from "./funcs/enableScroll";
 
 export const AlbumContext = createContext();
 
@@ -49,28 +48,26 @@ function App() {
     if (cart.length > 0) {
       setShowCart(true);
     }
-
-    console.log(cart);
   }, [cart]);
 
   useEffect(() => {
     if (activeAlbum) {
-      disableScroll()
+      disableScroll();
     } else {
-      enableScrol()
+      enableScroll();
     }
-  }, [activeAlbum])
+  }, [activeAlbum]);
 
   return (
     <div className="bg-white text-blue-800 flex flex-col items-center min-h-screen min-w-screen">
       <AlbumContext.Provider value={stateVariables}>
-        <Header showCart={showCart} setShowCart={setShowCart} />
+        <Header />
 
         <ActiveAlbumModal />
 
         <div className="flex flex-col w-screen">
           <PaymentStatus />
-          <Inventory cart={cart} setCart={setCart} />
+          <Inventory />
         </div>
 
         <SideCart

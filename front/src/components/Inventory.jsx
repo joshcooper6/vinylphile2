@@ -6,7 +6,7 @@ import formatPrice from "../funcs/formatPrice";
 import { AlbumContext } from "../App";
 
 export default function Inventory() {
-  const { cart, setCart, addToCart } = useContext(AlbumContext);
+  const { cart, setCart, showCart, setShowCart, addToCart } = useContext(AlbumContext);
 
   function fetchVinyls() {
     return fetch("http://localhost:2222/vinyls").then((res) => res.json());

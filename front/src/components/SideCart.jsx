@@ -1,17 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import renderArray from "../funcs/renderArray";
 import calculateTotalCost from "../funcs/calcCost";
 import calcItemQuantity from "../funcs/calcQuantity";
+import formatPrice from "../funcs/formatPrice";
 import SVG from "./SVG";
 import axios from "axios";
+import { AlbumContext } from "../App";
 
-export default function SideCart({
-  formatPrice,
-  cart,
-  setShowCart,
-  setCart,
-  showCart,
-}) {
+export default function SideCart() {
+  const { cart, setShowCart, setCart, showCart } = useContext(AlbumContext);
   const totalCartCost = calculateTotalCost(cart);
   const [state, setState] = useState("");
 
@@ -96,12 +93,25 @@ export default function SideCart({
           <div className="flex flex-row-reverse w-full gap-2 self-center">
             <button
               onClick={() => {
-                if (confirm('This is only a CONCEPT platform. Do NOT use your actual information as these are not actual products. Refer to Stripe API documentation to make a test payment.')) {
-                  postCart()
-                };
+                if (
+                  confirm(
+                    "This is only a CONCEPT platform. Do NOT use your actual information as these are not actual products. Refer to Stripe API documentation to make a test payment."
+                  )
+                ) {
+                  postCart();
+                }
               }}
               className={`w-3/4 border flex items-center font-light uppercase text-sm justify-center gap-1 border-blue-700 rounded-lg`}
-              children={<>Checkout <SVG svgShape={'stripe'} color={'blue'} styles={`scale-[1] translate-y-[-1px]`} /></>}
+              children={
+                <>
+                  Checkout{" "}
+                  <SVG
+                    svgShape={"stripe"}
+                    color={"blue"}
+                    styles={`scale-[1] translate-y-[-1px]`}
+                  />
+                </>
+              }
             />
             <button
               className={`w-1/4 flex items-center justify-center border-gray-300 p-2 border rounded-lg`}
@@ -113,7 +123,7 @@ export default function SideCart({
                 }
               }}
             >
-              <SVG svgShape={'clearCart'} color={'blue'} />
+              <SVG svgShape={"clearCart"} color={"blue"} />
             </button>
           </div>
 
