@@ -1,8 +1,12 @@
 import { faRecordVinyl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 import SVG from "./SVG";
+import { AlbumContext } from "../App";
 
-export default function Header({ showCart, setShowCart }) {
+export default function Header() {
+  const { showCart, setShowCart } = useContext(AlbumContext);
+
   let img =
     "https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_Seattle#/media/File:Downtown_Seattle_skyline_from_Kerry_Park_-_October_2019.jpg";
 

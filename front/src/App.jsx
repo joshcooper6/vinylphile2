@@ -9,7 +9,7 @@ import SVG from "./components/SVG";
 import formatPrice from "./funcs/formatPrice";
 import ActiveAlbumModal from "./components/ActiveAlbumModal";
 
-const AlbumContext = createContext();
+export const AlbumContext = createContext();
 
 function App() {
   const [showCart, setShowCart] = useState(false);
