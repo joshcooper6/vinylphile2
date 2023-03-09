@@ -7,6 +7,7 @@ import PaymentStatus from './components/PaymentStatus';
 import Inventory from "./components/Inventory";
 import SVG from "./components/SVG";
 import formatPrice from "./funcs/formatPrice";
+import ActiveAlbumModal from "./components/ActiveAlbumModal";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -24,6 +25,8 @@ function App() {
   return (
     <div className="bg-white text-blue-800 flex flex-col items-center min-h-screen min-w-screen">
       <Header showCart={showCart} setShowCart={setShowCart} />
+      
+      <ActiveAlbumModal />
 
       <div className="flex flex-col w-screen">
         <PaymentStatus />

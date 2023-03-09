@@ -68,7 +68,7 @@ export default function Inventory({ cart, setCart }) {
         </button>
       </div>
 
-      <div className="flex w-11/12 max-w-[1000px] gap-4 self-center rounded-2xl bg-gray-200 border p-10 items-center justify-center flex-wrap">
+      <div className="flex w-11/12 max-w-[1000px] gap-4 self-center rounded-2xl bg-gray-200 border p-10 items-center justify-center flex-wrap">        
         <form
           className={`flex ${
             showFilter ? "max-h-[300px]" : "max-h-[0] hidden opacity-0 z-[-100]"
@@ -77,12 +77,18 @@ export default function Inventory({ cart, setCart }) {
           {genres?.map((genre, index) => {
             return (
               <div key={index} className="flex items-center gap-2">
-                <input onChange={onFilterChange} type="checkbox" name={genre} />
+                <input onChange={onFilterChange} type="checkbox" name={genre} checked={filterInput.includes(genre)} />
                 <label htmlFor={genre}>{genre.toLowerCase()}</label>
               </div>
             );
           })}
         </form>
+
+        <button 
+          className={showFilter ? 'border w-10/12 border-gray-400 rounded-md p-3' : 'hidden'}
+          children={'Clear Filters'}
+          onClick={() => {setFilterInput([])}}
+        />
 
         {filterInput?.length > 0 ? (
           <>
@@ -93,7 +99,7 @@ export default function Inventory({ cart, setCart }) {
                       <div
                         onClick={() => addToCart(vinyl)}
                         key={ind}
-                        className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-9/12 md:w-[200px]`}
+                        className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-11/12 md:w-[200px]`}
                       >
                         <img className="rounded-md" src={vinyl.image} />
                         <h2 className="text-md truncate font-bold">
@@ -114,7 +120,7 @@ export default function Inventory({ cart, setCart }) {
               <div
                 onClick={() => addToCart(vinyl)}
                 key={vinyl.id}
-                className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-7/12 md:w-[200px]`}
+                className={`flex p-4 gap-2 hover:scale-105 cursor-pointer transease justify-center rounded-md bg-blue-900 text-blue-200 flex-col min-h-[250px] w-11/12 md:w-[200px]`}
               >
                 <img className="rounded-md" src={vinyl.image} />
                 <h2 className="text-md truncate font-bold">{vinyl.name}</h2>
