@@ -11,7 +11,7 @@ import ActiveAlbumModal from "./components/ActiveAlbumModal";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
-  const [activeAlbum, setActiveAlbum] = useState(null);
+  const [vinyls, setVinyls] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
