@@ -15,14 +15,14 @@ function ActiveAlbumModal(props) {
       }
     >
       <div className="w-10/12 p-6 gap-4 rounded-xl flex-col items-center justify-center flex max-w-[400px] bg-blue-100 z-[100]">
-        <div className="flex flex-col justify-center items-center gap-4">
-          <img className="rounded-xl contrast-125" src={activeAlbum?.image} />
+        <div className="flex flex-col justify-center w-full items-center gap-4">
+          <img className="rounded-xl reflect w-11/12 object-cover contrast-125" src={activeAlbum?.image} />
           <div className="self-start">
             <h2
-              children={activeAlbum?.metadata.album}
-              className={"text-xl font-bold"}
+              children={activeAlbum?.metadata?.album}
+              className={"text-2xl font-bold"}
             />
-            <h3 children={activeAlbum?.metadata.artist} className={"text-md"} />
+            <h3 children={activeAlbum?.metadata?.artist} className={"text-md"} />
           </div>
         </div>
 

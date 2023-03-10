@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import SVG from "./SVG";
 import allGenres from "../funcs/allGenres";
-import formatPrice from "../funcs/formatPrice";
 import AlbumContext from "../AlbumContext";
 import AlbumCard from "./AlbumCard";
 
@@ -29,12 +28,6 @@ export default function Inventory() {
       setFilterInput(x);
     }
   }
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setGenres(allGenres(data));
-  //   }
-  // }, [data]);
 
   if (isLoading) {
     return <p>Loading...</p>;
