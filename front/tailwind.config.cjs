@@ -8,8 +8,8 @@ module.exports = {
     './src/components/Header.jsx',
     './src/components/Footer.jsx',
     './src/components/SVG.jsx',
-    './src/components/Inventory.jsx'
-
+    './src/components/Inventory.jsx',
+    './src/components/ActiveAlbumModal.jsx'
   ],
   theme: {
     extend: {},
