@@ -4,6 +4,7 @@ import SVG from "./SVG";
 import allGenres from "../funcs/allGenres";
 import AlbumContext from "../AlbumContext";
 import AlbumCard from "./AlbumCard";
+import capitalize from "../funcs/capitalize";
 
 export default function Inventory() {
   const { cart, setCart, showCart, setShowCart, addToCart } = useContext(AlbumContext);
@@ -17,6 +18,9 @@ export default function Inventory() {
   const genres = allGenres(data);
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
+
+  useEffect(() => {console.log(genres)}, [data]);
+  useEffect(() => {console.log('input', filterInput)}, [filterInput]);
 
   function onFilterChange(e) {
     if (e.target.checked && !filterInput.includes(e.target.name)) {
@@ -43,9 +47,9 @@ export default function Inventory() {
         <h2 className="text-3xl font-bold">Featured Vinyls</h2>
         <button
           onClick={() => setShowFilter((prev) => !prev)}
-          className="border-[1.2px] flex items-center self-end justify-center gap-3 border-gray-400 p-2 rounded-full"
+          className="bg-blue-900 flex items-center self-end justify-center gap-3 border-gray-400 p-2 rounded-full"
         >
-          <SVG svgShape={"filter"} color={"gray"} styles={`scale-[1]`} />
+          <SVG svgShape={"filter"} color={"white"} styles={`scale-[1]`} />
         </button>
       </div>
 
@@ -59,14 +63,14 @@ export default function Inventory() {
             return (
               <div key={index} className="flex items-center gap-2">
                 <input onChange={onFilterChange} type="checkbox" name={genre} checked={filterInput.includes(genre)} />
-                <label htmlFor={genre}>{genre.toLowerCase()}</label>
+                <label htmlFor={genre}>{capitalize(genre)}</label>
               </div>
             );
           })}
         </form>
 
         <button 
-          className={showFilter ? 'border w-10/12 border-gray-400 rounded-md p-3' : 'hidden'}
+          className={showFilter ? 'border w-10/12 bg-blue-900 text-blue-100 rounded-md p-3' : 'hidden'}
           children={'Clear Filters'}
           onClick={() => {setFilterInput([])}}
         />
@@ -75,9 +79,9 @@ export default function Inventory() {
           <>
             {filterInput.map((genre, index) => {
               return data.map((vinyl, ind) => {
-                if (vinyl.metadata.genre == genre) {
+                if (vinyl.metadata.genre.toLowerCase() == genre.toLowerCase()) {
                   return (
-                    <AlbumCard vinyl={vinyl} key={index} />
+                    <AlbumCard vinyl={vinyl} key={`${genre}_${vinyl?.metadata.album}_${index}_${ind}`} />
                   );
                 }
               });
@@ -86,7 +90,7 @@ export default function Inventory() {
         ) : (
           <>
             {data?.map((vinyl, index) => (
-              <AlbumCard vinyl={vinyl} key={index} />
+              <AlbumCard vinyl={vinyl} key={`${vinyl}_${index}`} />
             ))}
           </>
         )}
