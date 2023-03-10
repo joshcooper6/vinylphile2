@@ -1,12 +1,9 @@
-import { createContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 import "./App.css";
 import SideCart from "./components/SideCart";
 import Header from "./components/Header";
 import PaymentStatus from "./components/PaymentStatus";
 import Inventory from "./components/Inventory";
-import SVG from "./components/SVG";
-import formatPrice from "./funcs/formatPrice";
 import ActiveAlbumModal from "./components/ActiveAlbumModal";
 import disableScroll from "./funcs/disableScroll";
 import enableScroll from "./funcs/enableScroll";
@@ -64,7 +61,7 @@ function App() {
 
         <ActiveAlbumModal />
 
-        <div className="flex flex-col w-screen">
+        <div className="flex flex-col max-w-[800px] w-screen">
           <PaymentStatus />
           <Inventory />
         </div>
