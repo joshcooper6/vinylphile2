@@ -2,7 +2,7 @@ import { faRecordVinyl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import SVG from "./SVG";
-import { AlbumContext } from "../App";
+import AlbumContext from "../AlbumContext";
 
 export default function Header() {
   const { showCart, setShowCart } = useContext(AlbumContext);

@@ -10,8 +10,7 @@ import formatPrice from "./funcs/formatPrice";
 import ActiveAlbumModal from "./components/ActiveAlbumModal";
 import disableScroll from "./funcs/disableScroll";
 import enableScroll from "./funcs/enableScroll";
-
-export const AlbumContext = createContext();
+import AlbumContext from "./AlbumContext";
 
 function App() {
   const [showCart, setShowCart] = useState(false);

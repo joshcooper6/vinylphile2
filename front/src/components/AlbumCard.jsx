@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AlbumContext } from "../App";
+import AlbumContext from "../AlbumContext";
 import formatPrice from "../funcs/formatPrice";
 
 export default function AlbumCard(props) {
@@ -9,10 +9,10 @@ export default function AlbumCard(props) {
   return (
     <div
       onClick={() => {addToCart(vinyl); setActiveAlbum(vinyl);}}
-      className={`flex p-4 gap-4 hover:scale-105 cursor-pointer transease justify-start rounded-md bg-blue-900 text-blue-200 md:flex-col w-11/12 max-w-[400px] md:w-[200px]`}
+      className={`flex p-4 gap-4 hover:scale-105 cursor-pointer transease justify-start rounded-md bg-blue-900 text-blue-200 md:flex-col w-1/2 max-w-[400px] md:w-[200px]`}
     >
       <img className="rounded-md w-[100px] md:w-full" src={vinyl?.image} />
-      <div className="flex flex-col self-center md:self-start3 w-full max-w-[150px]">
+      <div className="flex flex-col self-center md:self-start w-full max-w-[150px]">
         <h2 className="text-md truncate font-bold">{vinyl?.metadata.album}</h2>
         <h2 className="text-md truncate">{vinyl?.metadata.artist}</h2>
 

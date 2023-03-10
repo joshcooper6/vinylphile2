@@ -5,7 +5,7 @@ import calcItemQuantity from "../funcs/calcQuantity";
 import formatPrice from "../funcs/formatPrice";
 import SVG from "./SVG";
 import axios from "axios";
-import { AlbumContext } from "../App";
+import AlbumContext from "../AlbumContext";
 
 export default function SideCart() {
   const { cart, setShowCart, setCart, showCart } = useContext(AlbumContext);

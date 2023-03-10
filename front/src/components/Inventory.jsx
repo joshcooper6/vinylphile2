@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import SVG from "./SVG";
 import allGenres from "../funcs/allGenres";
 import formatPrice from "../funcs/formatPrice";
-import { AlbumContext } from "../App";
+import AlbumContext from "../AlbumContext";
 import AlbumCard from "./AlbumCard";
 
 export default function Inventory() {
