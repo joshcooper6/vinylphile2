@@ -19,6 +19,10 @@ body {
   background-position: center top;
 }
 
+.reflect {
+  -webkit-box-reflect: below 10px;
+}
+
 .plus {
     font-size: 20px;
     line-height: 20px;
