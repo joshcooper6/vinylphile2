@@ -9,7 +9,8 @@ module.exports = {
     './src/components/Footer.jsx',
     './src/components/SVG.jsx',
     './src/components/Inventory.jsx',
-    './src/components/ActiveAlbumModal.jsx'
+    './src/components/ActiveAlbumModal.jsx',
+    './src/components/FlipAlbumCover.jsx'
   ],
   theme: {
     extend: {},

@@ -72,7 +72,7 @@ export default function Inventory() {
         <button 
           className={showFilter ? 'border w-10/12 bg-blue-900 text-blue-100 rounded-md p-3' : 'hidden'}
           children={'Clear Filters'}
-          onClick={() => {setFilterInput([])}}
+          onClick={() => {setFilterInput([]); setShowFilter(false);}}
         />
 
         {filterInput?.length > 0 ? (
