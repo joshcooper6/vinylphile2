@@ -9,6 +9,9 @@ function ActiveAlbumModal(props) {
 
   useEffect(() => {
     console.log(activeAlbum);
+    if (activeAlbum == null) {
+      setShowTracks(false);
+    }
   }, [activeAlbum]);
 
   return (

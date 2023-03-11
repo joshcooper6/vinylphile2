@@ -16,14 +16,17 @@ export default function FlipAlbumCover(props) {
           children={``}
         />
         <div
-          className={`back overflow-scroll p-4 flex flex-col justify-center bg-blue-900 ${
+          className={`back overflow-scroll pl-3 pt-3 bg-blue-900 ${
             showTracks ? "flipTheCard" : ""
           } `}
         >
             {tracks?.split(",").map((track, index) => {
               return (
-                <div className="text-sm flex items-center gap-2" key={`${track}_${index}`}>
-                  <span className="font-light text-xs">{index + 1}</span> 
+                <div
+                  className="text-sm flex items-center gap-2"
+                  key={`${track}_${index}`}
+                >
+                  <span className="font-light text-xs">{index + 1}</span>
                   <span>{track}</span>
                 </div>
               );
