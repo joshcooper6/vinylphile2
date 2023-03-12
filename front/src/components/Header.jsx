@@ -15,9 +15,9 @@ export default function Header() {
   return (
     <>
       <div className="flex z-[60] w-screen drop-shadow-md justify-between bg-blue-900">
-        <div className="logo flex p-5 items-center text-blue-200 select-none justify-center">
-          <FontAwesomeIcon icon={faRecordVinyl} className={"text-5xl p-2"} />
-          <h1 className="lowercase tracking-tighter text-6xl">Vinylphile</h1>
+        <div className="logo flex p-4 md:p-5 items-center text-blue-200 select-none justify-center">
+          <FontAwesomeIcon icon={faRecordVinyl} className={"text-4xl md:text-5xl p-2"} />
+          <h1 className="lowercase tracking-tighter text-5xl md:text-6xl">Vinylphile</h1>
         </div>
 
         <div className="mr-6 gap-4 flex items-center">

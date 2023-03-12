@@ -13,7 +13,7 @@ export default function SearchBar(props) {
   const options = {
     keys: ["name", "metadata.album", "metadata.artist"],
     threshold: 0.1,
-    minMatchCharLength: 3,
+    minMatchCharLength: 2,
   };
 
   const fuse = new Fuse(masterInventory, options);
@@ -43,24 +43,31 @@ export default function SearchBar(props) {
         >
           <input
             type={"text"}
-            placeholder={"Search by artist, album, or genre..."}
+            placeholder={"Search by artist or album..."}
             className={`w-10/12 rounded-full drop-shadow-md p-2 pl-4 pr-4`}
             hidden={!showSearch}
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
           />
-          <button children={"Clear"} className={'uppercase font-light'} onClick={() => {setSearchTerm('')}} />
+          <button
+            children={"Clear"}
+            hidden={!showSearch}
+            className={"uppercase font-light"}
+            onClick={() => {
+              setSearchTerm("");
+            }}
+          />
         </div>
       </div>
 
-      <div className="z-[50] bg-blue-200 w-full items-center justify-center flex">
+      <div className="z-[50] bg-blue-200 w-screen items-center justify-center flex">
         <div className="flex flex-col items-center justify-center">
           {results?.map((album, index) => {
             return (
               <div
                 key={index}
                 onClick={() => setActiveAlbum(album.item)}
-                className={"flex p-2 cursor-pointer items-center gap-4"}
+                className={"flex p-4 w-screen border-b-2 last:border-b-0 cursor-pointer items-center gap-4"}
               >
                 <img src={album.item.image} className={"max-w-[50px]"} />
                 <div className="flex flex-col justify-center items-start">
