@@ -70,7 +70,7 @@ export default function SideCart() {
   return (
     <>
       <div
-        className={`md:w-6/12 p-4 max-w-[400px] w-full shadow-md fixed ${
+        className={`md:w-6/12 p-4 z-[70] max-w-[400px] w-full shadow-md fixed ${
           showCart ? "translate-x-[0]" : "translate-x-[-1000px]"
         } transease left-[0] top-0 shadow-r-xl h-screen bg-white z-50`}
       >
