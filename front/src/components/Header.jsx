@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import SVG from "./SVG";
 import AlbumContext from "../AlbumContext";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   const { showCart, setShowCart } = useContext(AlbumContext);
@@ -24,6 +25,8 @@ export default function Header() {
           styles={"fill-blue-200 scale-125 mr-6"}
         />
       </div>
+
+      <SearchBar />
 
       <div
         id="seattle"
