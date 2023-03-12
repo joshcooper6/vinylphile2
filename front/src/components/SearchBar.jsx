@@ -9,6 +9,7 @@ export default function SearchBar(props) {
   const height = "50px";
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [hovered, setHovered] = useState(null);
 
   const options = {
     keys: ["name", "metadata.album", "metadata.artist"],
@@ -21,6 +22,10 @@ export default function SearchBar(props) {
   useEffect(() => {
     setResults(fuse.search(searchTerm));
   }, [searchTerm]);
+
+  useEffect(() => {
+    console.log('hovered', hovered)
+}, [hovered]);
 
   useEffect(() => {
     if (!showSearch) {
@@ -60,17 +65,19 @@ export default function SearchBar(props) {
         </div>
       </div>
 
-      <div className="z-[50] bg-blue-200 w-screen items-center justify-center flex">
+      <div className={`z-[50] bg-blue-900 text-white w-screen items-center justify-center flex`}>
         <div className="flex flex-col items-center justify-center">
           {results?.map((album, index) => {
             return (
               <div
                 key={index}
+                onMouseOver={() => setHovered(album.item)}
+                onMouseLeave={() => {setHovered(null)}}
                 onClick={() => setActiveAlbum(album.item)}
-                className={"flex p-4 w-screen border-b-2 last:border-b-0 cursor-pointer items-center gap-4"}
+                className={`flex p-4 w-screen ${((hovered?.name != album.item.name) && (hovered)) ? 'opacity-40' : 'hover:opacity-100'} border-gray-900 transease border-b-[1px] last:border-b-0 cursor-pointer items-center gap-4`}
               >
-                <img src={album.item.image} className={"max-w-[50px]"} />
-                <div className="flex flex-col justify-center items-start">
+                <img src={album.item.image} className={`max-w-[50px]`} />
+                <div className={`flex flex-col justify-center items-start`}>
                   <span className="font-bold">{album.item.metadata.album}</span>
                   <span>{album.item.metadata.artist}</span>
                 </div>
