@@ -78,7 +78,7 @@ function App() {
 
         <ActiveAlbumModal />
 
-        <div className="flex flex-col max-w-[800px] w-screen">
+        <div className="flex flex-col max-w-[800px] mb-4 w-screen">
           <PaymentStatus />
           <Inventory />
         </div>

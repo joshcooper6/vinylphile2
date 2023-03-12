@@ -12,7 +12,7 @@ export default function Footer() {
     ]
 
     return <>
-    <div className='min-h-[100px] relative bottom-0 mt-8 flex flex-col justify-center items-center text-blue-100 w-full bg-blue-900'>
+    <div className='min-h-[100px] mt-auto relative bottom-0 flex flex-col justify-center items-center text-blue-100 w-full bg-blue-900'>
         <div className="flex flex-col gap-1 w-full justify-center items-center">
             <div className="flex scale-110 transease items-center justify-center gap-3">
                 { socials.map((social, index) => {
