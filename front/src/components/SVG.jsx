@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function SVG({ setState, styles, color, svgShape }) {
+export default function SVG({
+  setState,
+  scrollToTop,
+  styles,
+  color,
+  svgShape,
+}) {
   const [shape, setShape] = useState("");
   const [animating, setAnimating] = useState(false);
 
@@ -58,6 +64,10 @@ export default function SVG({ setState, styles, color, svgShape }) {
       onClick={() => {
         if (setState) {
           setState((prev) => !prev);
+        }
+
+        if (scrollToTop) {
+          window.scrollTo(0, 0);
         }
         setAnimating(true);
       }}

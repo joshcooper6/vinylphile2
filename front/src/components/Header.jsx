@@ -14,15 +14,16 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center items-center z-[60] w-screen drop-shadow-md md:justify-between bg-blue-900">
-        <div className="logo flex p-4 md:p-5 items-center text-blue-200 select-none justify-center">
-          <FontAwesomeIcon icon={faRecordVinyl} className={"text-4xl md:text-5xl p-2"} />
-          <h1 className="lowercase tracking-tighter text-5xl md:text-6xl">Vinylphile</h1>
+      <div className="flex sticky top-0 items-center z-[60] w-screen drop-shadow-md justify-between bg-blue-900">
+        <div className="logo flex p-4 items-center text-blue-200 select-none justify-center">
+          <FontAwesomeIcon icon={faRecordVinyl} className={"text-4xl  p-2"} />
+          <h1 className="lowercase tracking-tighter text-5xl">Vinylphile</h1>
         </div>
 
-        <div className="md:mr-6 md:pb-0 pb-4 gap-4 flex items-center">
+        <div className="mr-6 gap-4 flex items-center">
           <SVG
             setState={setShowSearch}
+            scrollToTop
             svgShape={showSearch ? "cancel" : "search"}
             styles={"fill-blue-200 scale-120"}
           />

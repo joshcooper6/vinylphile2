@@ -9,6 +9,7 @@ import disableScroll from "./funcs/disableScroll";
 import enableScroll from "./funcs/enableScroll";
 import AlbumContext from "./AlbumContext";
 import TermsModal from "./components/TermsModal";
+import Footer from "./components/Footer";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -85,6 +86,8 @@ function App() {
         <TermsModal />
 
         <SideCart />
+
+        <Footer />
       </AlbumContext.Provider>
     </div>
   );

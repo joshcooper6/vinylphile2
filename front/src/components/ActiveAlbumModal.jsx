@@ -48,7 +48,7 @@ function ActiveAlbumModal(props) {
                 activeAlbum?.convertedPrice,
                 activeAlbum?.currency
               )}
-              className={"text-3xl font-thin"}
+              className={"text-2xl font-medium"}
             />
           </div>
         </div>
