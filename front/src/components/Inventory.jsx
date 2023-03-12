@@ -7,7 +7,7 @@ import AlbumCard from "./AlbumCard";
 import capitalize from "../funcs/capitalize";
 
 export default function Inventory() {
-  const { cart, setCart, showCart, setShowCart, addToCart } = useContext(AlbumContext);
+  const { cart, setCart, showCart, setShowCart, addToCart, setMasterInventory } = useContext(AlbumContext);
 
   function fetchVinyls() {
     return fetch("http://localhost:2222/vinyls").then((res) => res.json());
@@ -19,7 +19,7 @@ export default function Inventory() {
   const [showFilter, setShowFilter] = useState(false);
   const [filterInput, setFilterInput] = useState([]);
 
-  useEffect(() => {console.log(genres)}, [data]);
+  useEffect(() => {console.log(genres); setMasterInventory(data)}, [data]);
   useEffect(() => {console.log('input', filterInput)}, [filterInput]);
 
   function onFilterChange(e) {

@@ -13,6 +13,7 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const [activeAlbum, setActiveAlbum] = useState(false);
   const [cart, setCart] = useState([]);
+  const [masterInventory, setMasterInventory] = useState([]);
 
   function addToCart(vinyl) {
     const existingVinyl = cart.find((item) => item.id === vinyl.id);
@@ -38,6 +39,8 @@ function App() {
     activeAlbum,
     setActiveAlbum,
     addToCart,
+    masterInventory,
+    setMasterInventory
   };
 
   useEffect(() => {
@@ -45,6 +48,10 @@ function App() {
       setShowCart(true);
     }
   }, [cart]);
+
+  useEffect(() => {
+    console.log('Master', masterInventory)
+  }, [masterInventory]);
 
   useEffect(() => {
     if (activeAlbum) {
