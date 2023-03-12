@@ -44,7 +44,7 @@ export default function Inventory() {
   return (
     <>
       <div className={`w-11/12 max-w-[1000px] flex self-center p-4 justify-between items-center`}>
-        <h2 className="text-3xl font-bold">Featured Vinyls</h2>
+        <h2 className="text-3xl select-none font-bold">Featured Vinyls</h2>
         <button
           onClick={() => setShowFilter((prev) => !prev)}
           className="bg-blue-900 flex items-center self-end justify-center gap-3 border-gray-400 p-2 rounded-full"

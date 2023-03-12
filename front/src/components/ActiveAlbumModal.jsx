@@ -39,20 +39,28 @@ function ActiveAlbumModal(props) {
               children={activeAlbum?.metadata?.artist}
               className={"text-md"}
             />
+            <h3
+              children={'Variant(s): Standard Black'}
+              className={"text-md"}
+            />
+            <h3
+              children={formatPrice(
+                activeAlbum?.convertedPrice,
+                activeAlbum?.currency
+              )}
+              className={"text-3xl font-thin"}
+            />
           </div>
         </div>
 
-        <div className="flex flex-col w-full justify-center items-center gap-2">
+        <div className="flex flex-col-reverse w-full justify-center items-center gap-2">
           <button
             children={showTracks ? "Hide Tracks" : "Show Tracks"}
             className={`w-full bg-blue-400  tracking-tight text-blue-900 max-w-[300px] p-4 rounded-full`}
             onClick={() => setShowTracks((prev) => !prev)}
           />
           <button
-            children={`Add To Cart (${formatPrice(
-              activeAlbum?.convertedPrice,
-              activeAlbum?.currency
-            )})`}
+            children={`Add To Cart`}
             className={`w-full bg-blue-900 tracking-tight text-blue-100 max-w-[300px] p-4 rounded-full`}
             onClick={() => {
               addToCart(activeAlbum);

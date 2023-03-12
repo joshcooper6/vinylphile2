@@ -42,7 +42,7 @@ export default function Header() {
         id="seattle"
         className={`h-[300px] flex flex-col items-center justify-center w-screen`}
       >
-        <h2 className="text-white opacity-100 z-[01] text-3xl md:max-w-max max-w-[300px] p-1 text-center md:text-4xl">
+        <h2 className="text-white select-none opacity-100 z-[01] text-3xl md:max-w-max max-w-[300px] p-1 text-center md:text-4xl">
           Seattle's Top Vinyl Record E-Shop
         </h2>
         <div className="fixed w-full h-full flex flex-col items-center bg-gray-500 bg-opacity-80" />

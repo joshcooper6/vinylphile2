@@ -15,7 +15,7 @@ function TermsModal() {
     <>
       {showModal && (
         <div className={`fixed transease z-[100] bottom-0 p-4 left-0 w-screen bg-slate-900 text-white flex items-center justify-center gap-4`}>
-          <p className="text-sm">
+          <p className="text-sm max-w-[600px]">
             By using this website, you understand that it is a concept platform with no actual products.
             Please refer to Stripe API documentation for test payment information.
           </p>
