@@ -4,7 +4,7 @@ import Fuse from "fuse.js";
 import SVG from "./SVG";
 
 export default function SearchBar(props) {
-  const { showSearch } = props;
+  const { showSearch, setShowSearch } = props;
   const { masterInventory, setActiveAlbum } = useContext(AlbumContext);
   const height = "50px";
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,6 +58,9 @@ export default function SearchBar(props) {
             children={"Clear"}
             hidden={!showSearch}
             className={"uppercase font-light"}
+            onDoubleClick={() => {
+                setShowSearch(false);
+            }}
             onClick={() => {
               setSearchTerm("");
             }}

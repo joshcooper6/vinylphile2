@@ -62,6 +62,14 @@ function App() {
     }
   }, [activeAlbum]);
 
+  useEffect(() => {
+    if (showCart) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [showCart]);
+
   return (
     <div className="bg-white text-blue-800 flex flex-col items-center min-h-screen min-w-screen">
       <AlbumContext.Provider value={stateVariables}>

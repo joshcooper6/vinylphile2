@@ -69,10 +69,11 @@ export default function SideCart() {
 
   return (
     <>
+      <div className={` z-[80] ${showCart ? 'bg-opacity-40 fixed top-0 left-0 w-screen h-screen' : 'bg-opacity-0'} transease backdrop-blur-lg bg-white`}/>
       <div
         className={`md:w-6/12 p-4 z-[80] max-w-[400px] w-full shadow-md fixed ${
           showCart ? "translate-x-[0]" : "translate-x-[-1000px]"
-        } transease left-[0] top-0 shadow-r-xl h-screen bg-white z-50`}
+        } transease left-[0] top-0 shadow-r-xl h-screen bg-white z-[80]`}
       >
         <div className="flex p-4 flex-col w-full h-full gap-3">
           <div className="flex justify-between">
