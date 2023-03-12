@@ -11,7 +11,8 @@ module.exports = {
     './src/components/Inventory.jsx',
     './src/components/ActiveAlbumModal.jsx',
     './src/components/FlipAlbumCover.jsx',
-    './src/components/SearchBar.jsx'
+    './src/components/SearchBar.jsx',
+    './src/components/TermsModal.jsx'
   ],
   theme: {
     extend: {},
