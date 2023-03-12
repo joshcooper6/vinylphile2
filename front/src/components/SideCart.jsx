@@ -9,8 +9,19 @@ import AlbumContext from "../AlbumContext";
 
 export default function SideCart() {
   const { cart, setShowCart, setCart, showCart } = useContext(AlbumContext);
-  const totalCartCost = calculateTotalCost(cart);
   const [state, setState] = useState("");
+
+  function cartTotal() {
+    let x = 0;
+
+    for (let album of cart) {
+      if (album.convertedPrice) {
+        x += album.convertedPrice;
+      }
+    }
+
+    return formatPrice(x, "usd");
+  }
 
   async function postCart() {
     await axios
@@ -69,7 +80,16 @@ export default function SideCart() {
 
   return (
     <>
-      <div onClick={() => {setShowCart(false)}} className={` z-[80] ${showCart ? 'bg-opacity-40 fixed top-0 left-0 w-screen h-screen' : 'bg-opacity-0'} transease backdrop-blur-lg bg-white`}/>
+      <div
+        onClick={() => {
+          setShowCart(false);
+        }}
+        className={` z-[80] ${
+          showCart
+            ? "bg-opacity-40 fixed top-0 left-0 w-screen h-screen"
+            : "bg-opacity-0"
+        } transease backdrop-blur-lg bg-white`}
+      />
       <div
         className={`md:w-6/12 p-4 z-[80] max-w-[400px] w-full shadow-md fixed ${
           showCart ? "translate-x-[0]" : "translate-x-[-1000px]"
@@ -89,43 +109,6 @@ export default function SideCart() {
                 Close
               </span>
             </div>
-          </div>
-
-          <div className="flex flex-row-reverse w-full gap-2 self-center">
-            <button
-              onClick={() => {
-                if (
-                  confirm(
-                    "This is only a CONCEPT platform. Do NOT use your actual information as these are not actual products. Refer to Stripe API documentation to make a test payment."
-                  )
-                ) {
-                  postCart();
-                }
-              }}
-              className={`w-3/4 border flex items-center font-light uppercase text-sm justify-center gap-1 border-blue-700 rounded-lg`}
-              children={
-                <>
-                  Checkout{" "}
-                  <SVG
-                    svgShape={"stripe"}
-                    color={"blue"}
-                    styles={`scale-[1] translate-y-[-1px]`}
-                  />
-                </>
-              }
-            />
-            <button
-              className={`w-1/4 flex items-center justify-center border-gray-300 p-2 border rounded-lg`}
-              onClick={() => {
-                if (confirm("Are you sure you want to clear your cart?")) {
-                  setCart([]);
-                  setShowCart(false);
-                  setState("");
-                }
-              }}
-            >
-              <SVG svgShape={"clearCart"} color={"blue"} />
-            </button>
           </div>
 
           <div className="overflow-y-scroll">
@@ -169,6 +152,50 @@ export default function SideCart() {
                 <img src={item.image} className={`w-1/4 border rounded-lg`} />
               </div>
             ))}
+          </div>
+
+          <div className="w-full border-blue-700">
+            <div className="flex pt-3 flex-row-reverse w-full gap-2 self-center">
+              <button
+                onClick={() => {
+                  if (
+                    confirm(
+                      "This is only a CONCEPT platform. Do NOT use your actual information as these are not actual products. Refer to Stripe API documentation to make a test payment."
+                    )
+                  ) {
+                    postCart();
+                  }
+                }}
+                className={`w-11/12 border flex items-center text-white font-light uppercase text-sm justify-center gap-1 bg-blue-700 rounded-lg`}
+                children={
+                  <>
+                    Checkout{" "}
+                    <SVG
+                      svgShape={"stripe"}
+                      color={"white"}
+                      styles={`scale-[1] translate-y-[-1px]`}
+                    />
+                  </>
+                }
+              />
+              <button
+                className={`w-2/12 flex items-center justify-center border-gray-300 p-2 border rounded-lg`}
+                onClick={() => {
+                  if (confirm("Are you sure you want to clear your cart?")) {
+                    setCart([]);
+                    setShowCart(false);
+                    setState("");
+                  }
+                }}
+              >
+                <SVG svgShape={"clearCart"} color={"blue"} />
+              </button>
+            </div>
+
+            <div className="flex flex-col self-end text-right w-full pt-4">
+              <p className="text-3xl">{cartTotal()}</p>
+              <p className="text-sm font-light">+ taxes & fees</p>
+            </div>
           </div>
         </div>
       </div>
