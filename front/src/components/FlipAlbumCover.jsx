@@ -16,7 +16,7 @@ export default function FlipAlbumCover(props) {
           children={``}
         />
         <div
-          className={`back overflow-scroll pl-3 pt-3 bg-blue-900 ${
+          className={`back overflow-scroll p-3 bg-blue-900 ${
             showTracks ? "flipTheCard" : ""
           } `}
         >

@@ -48,10 +48,18 @@ body {
 
   .card {
     width: 100%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 200px;
+    height: 200px;
     background-color: transparent;
     perspective: 1000;
+    transition: 500ms ease;
+  }
+
+  @media screen and (min-width: 600px) {
+    .card {
+      max-width: 300px;
+      height: 300px;
+    }
   }
   
   .content {
