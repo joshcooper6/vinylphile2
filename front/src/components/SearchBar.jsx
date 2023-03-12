@@ -10,6 +10,7 @@ export default function SearchBar(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [hovered, setHovered] = useState(null);
+  const inputRef = useRef();
 
   const options = {
     keys: ["name", "metadata.album", "metadata.artist"],
@@ -24,14 +25,16 @@ export default function SearchBar(props) {
   }, [searchTerm]);
 
   useEffect(() => {
-    console.log('hovered', hovered)
-}, [hovered]);
+    console.log("hovered", hovered);
+  }, [hovered]);
 
   useEffect(() => {
     if (!showSearch) {
       setSearchTerm("");
       setResults([]);
     }
+    
+    inputRef.current.focus();
   }, [showSearch]);
 
   return (
@@ -47,6 +50,7 @@ export default function SearchBar(props) {
           } `}
         >
           <input
+            ref={inputRef}
             type={"text"}
             placeholder={"Search by artist or album..."}
             className={`w-10/12 rounded-full drop-shadow-md p-2 pl-4 pr-4`}
@@ -59,25 +63,34 @@ export default function SearchBar(props) {
             hidden={!showSearch}
             className={"uppercase font-light"}
             onDoubleClick={() => {
-                setShowSearch(false);
+              setShowSearch(false);
             }}
             onClick={() => {
               setSearchTerm("");
+              inputRef.current.focus();
             }}
           />
         </div>
       </div>
 
-      <div className={`z-[50] bg-blue-900 text-white w-screen items-center justify-center flex`}>
+      <div
+        className={`z-[50] bg-blue-900 text-white w-screen items-center justify-center flex`}
+      >
         <div className="flex flex-col items-center justify-center">
           {results?.map((album, index) => {
             return (
               <div
                 key={index}
                 onMouseOver={() => setHovered(album.item)}
-                onMouseLeave={() => {setHovered(null)}}
+                onMouseLeave={() => {
+                  setHovered(null);
+                }}
                 onClick={() => setActiveAlbum(album.item)}
-                className={`flex p-4 w-screen ${((hovered?.name != album.item.name) && (hovered)) ? 'opacity-40' : 'hover:opacity-100'} border-gray-900 transease border-b-[1px] last:border-b-0 cursor-pointer items-center gap-4`}
+                className={`flex p-4 w-screen ${
+                  hovered?.name != album.item.name && hovered
+                    ? "opacity-40"
+                    : "hover:opacity-100"
+                } border-gray-900 transease border-b-[1px] last:border-b-0 cursor-pointer items-center gap-4`}
               >
                 <img src={album.item.image} className={`max-w-[50px]`} />
                 <div className={`flex flex-col justify-center items-start`}>
