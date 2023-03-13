@@ -12,10 +12,21 @@ module.exports = {
     './src/components/ActiveAlbumModal.jsx',
     './src/components/FlipAlbumCover.jsx',
     './src/components/SearchBar.jsx',
-    './src/components/TermsModal.jsx'
+    './src/components/TermsModal.jsx',
+    './src/components/PromoBar.jsx'
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        marquee: 'marquee 15s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
+      },
+    },
   },
   plugins: [],
 }

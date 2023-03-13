@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import SVG from "./SVG";
 import AlbumContext from "../AlbumContext";
 import SearchBar from "./SearchBar";
+import PromoBar from "./PromoBar";
 
 export default function Header() {
   const { showCart, setShowCart } = useContext(AlbumContext);
@@ -38,6 +39,8 @@ export default function Header() {
       </div>
 
       <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
+
+      <PromoBar messages={',Use promo code FIRST35 at checkout for 35% off your first order!'} />
 
       <div
         id="seattle"
