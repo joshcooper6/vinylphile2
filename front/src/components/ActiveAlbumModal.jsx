@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AlbumContext from "../AlbumContext";
 import formatPrice from "../funcs/formatPrice";
 import FlipAlbumCover from "./FlipAlbumCover";
+import SVG from "./SVG";
 
 function ActiveAlbumModal(props) {
   const { activeAlbum, setActiveAlbum, addToCart } = useContext(AlbumContext);
@@ -23,6 +24,13 @@ function ActiveAlbumModal(props) {
       }
     >
       <div className="w-10/12 p-6 gap-4 rounded-xl flex-col items-center justify-center flex max-w-[400px] bg-blue-100 z-[100]">
+        <button
+          onClick={() => {
+            setActiveAlbum(null);
+          }}
+          className="ml-auto transease hover:font-bold mb-[-50px] flex font-medium items-center justify-center drop-shadow-md w-[40px] h-[40px] hover:bg-blue-900 hover:text-blue-400 bg-blue-400 text-blue-900 rounded-full translate-y-[-35px] translate-x-[35px]"
+          children={"X"}
+        />
         <div className="flex flex-col justify-center w-full items-center gap-4">
           <FlipAlbumCover
             image={activeAlbum?.image}
@@ -39,10 +47,7 @@ function ActiveAlbumModal(props) {
               children={activeAlbum?.metadata?.artist}
               className={"text-md"}
             />
-            <h3
-              children={'Variant(s): Standard Black'}
-              className={"text-md"}
-            />
+            <h3 children={"Variant(s): Standard Black"} className={"text-md"} />
             <h3
               children={formatPrice(
                 activeAlbum?.convertedPrice,
@@ -61,7 +66,7 @@ function ActiveAlbumModal(props) {
           />
           <button
             children={`Add To Cart`}
-            className={`w-full bg-blue-900 tracking-tight text-blue-100 max-w-[300px] p-4 rounded-full`}
+            className={`w-full hover:bg-blue-700  bg-blue-900 tracking-tight text-blue-100 max-w-[300px] p-4 rounded-full`}
             onClick={() => {
               addToCart(activeAlbum);
               setActiveAlbum(null);
@@ -69,11 +74,11 @@ function ActiveAlbumModal(props) {
           />
         </div>
       </div>
-      <button
+      {/* <button
         children={"Dismiss"}
         className={" p-2 text-blue-100 uppercase tracking-widest font-light"}
         onClick={() => setActiveAlbum(null)}
-      />
+      /> */}
     </div>
   );
 }

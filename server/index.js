@@ -111,6 +111,7 @@ app.post("/checkout", async (req, res) => {
     mode: "payment",
     success_url: `${DOMAIN}?success=true`,
     cancel_url: `${DOMAIN}?canceled=true`,
+    allow_promotion_codes: true,
     // automatic_tax: {enabled: true},
   });
 

@@ -9,7 +9,7 @@ import AlbumContext from "../AlbumContext";
 
 export default function SideCart() {
   const { cart, setShowCart, setCart, showCart } = useContext(AlbumContext);
-  const [state, setState] = useState("");
+  // const [state, setState] = useState("");
 
   function cartTotal() {
     let x = 0;
@@ -184,7 +184,7 @@ export default function SideCart() {
                   if (confirm("Are you sure you want to clear your cart?")) {
                     setCart([]);
                     setShowCart(false);
-                    setState("");
+                    // setState("");
                   }
                 }}
               >

@@ -46,8 +46,8 @@
 
 .card {
   width: 100%;
-  max-width: 200px;
-  height: 200px;
+  max-width: 275px;
+  height: 275px;
   background-color: transparent;
   perspective: 1000;
   transition: 500ms ease;
@@ -86,6 +86,18 @@
   background: #03446a;
   color: white;
   transform: rotateY(180deg);
+}
+
+.goDown {
+  animation: goDown 1s linear forwards;
+}
+
+@keyframes goDown {
+  from {
+    transform: translateY(0)
+  } to {
+    transform: translateY(1000px)
+  }
 }
 
 @keyframes rotate-fade {
