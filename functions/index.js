@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(require("cors")());
 app.use(express.urlencoded({ extended: true }));
 
-const DOMAIN = `http://localhost:5173/`;
+const DOMAIN = `https://vinylphile-56bf9.web.app`;
 
 async function getProducts() {
   try {
