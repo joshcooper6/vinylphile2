@@ -10,7 +10,7 @@ export default function Inventory() {
   const { cart, setCart, showCart, setShowCart, addToCart, setMasterInventory } = useContext(AlbumContext);
 
   function fetchVinyls() {
-    return fetch("http://localhost:2222/vinyls").then((res) => res.json());
+    return fetch("https://us-central1-vinylphile-56bf9.cloudfunctions.net/app/vinyls").then((res) => res.json());
   }
 
   const { data, isLoading, error } = useQuery("vinyls", fetchVinyls);
