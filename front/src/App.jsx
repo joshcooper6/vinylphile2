@@ -54,7 +54,7 @@ function App() {
   useEffect(() => {
     console.log('Master', masterInventory)
   }, [masterInventory]);
-
+  
   useEffect(() => {
     if (activeAlbum) {
       disableScroll();
@@ -76,18 +76,18 @@ function App() {
       <AlbumContext.Provider value={stateVariables}>
         <Header />
 
-        <ActiveAlbumModal />
-
-        <div className="flex flex-col max-w-[800px] mb-4 w-screen">
+        <div className="flex flex-col max-w-[1200px] mb-4 w-screen">
           <PaymentStatus />
           <Inventory />
         </div>
 
-        <TermsModal />
+        <Footer />
 
+        {/* hidden unless toggled */}
+        <ActiveAlbumModal />
+        <TermsModal />
         <SideCart />
 
-        <Footer />
       </AlbumContext.Provider>
     </div>
   );

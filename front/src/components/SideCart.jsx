@@ -86,9 +86,9 @@ export default function SideCart() {
         }}
         className={` z-[80] ${
           showCart
-            ? "bg-opacity-40 fixed top-0 left-0 w-screen h-screen"
+            ? "bg-opacity-80 fixed top-0 left-0 w-screen h-screen"
             : "bg-opacity-0"
-        } transease backdrop-blur-lg bg-white`}
+        } transease backdrop-blur-lg bg-blue-900`}
       />
       <div
         className={`md:w-6/12 p-4 z-[80] max-w-[400px] w-full shadow-md fixed ${
