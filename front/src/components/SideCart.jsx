@@ -25,7 +25,7 @@ export default function SideCart() {
 
   async function postCart() {
     await axios
-      .post("http://localhost:2222/checkout", {
+      .post("https://us-central1-vinylphile-56bf9.cloudfunctions.net/app/checkout", {
         cart,
       })
       .then((response) => {
